@@ -83,11 +83,12 @@ execute_with_args(int expected, const char *src, int nargs, Oid argtypes[], Datu
 	int		ret;
 	int		i;
 	char	c_nulls[FUNC_MAX_ARGS];
+	Cursor_Data*	cursor_data = NULL;
 
 	for (i = 0; i < nargs; i++)
 		c_nulls[i] = (nulls[i] ? 'n' : ' ');
 
-	ret = SPI_execute_with_args(src, nargs, argtypes, values, c_nulls, false, 0);
+	ret = SPI_execute_with_args(src, nargs, argtypes, values, c_nulls, false, 0, cursor_data);
 	if EXEC_FAILED(ret, expected)
 		elog(ERROR, "query failed: (sql=%s, code=%d, expected=%d)", src, ret, expected);
 }

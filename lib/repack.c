@@ -113,7 +113,7 @@ must_be_superuser(const char *func)
  * Use the RENAME_REL macro for compatibility across versions.
  */
 #if PG_VERSION_NUM < 120000
-#define RENAME_REL(relid, newrelname) RenameRelationInternal(relid, newrelname, true);
+#define RENAME_REL(relid, newrelname) RenameRelationInternal(relid, newrelname);
 #else
 #define RENAME_REL(relid, newrelname) RenameRelationInternal(relid, newrelname, true, false);
 #endif
@@ -285,7 +285,7 @@ repack_apply(PG_FUNCTION_ARGS)
 		resetStringInfo(&sql_pop);
 		appendStringInfoString(&sql_pop, PG_GETARG_CSTRING(4));
 
-		for (i = 0; i < ntuples; i++, n++)
+		for (i = 0; (int)i < ntuples; i++, n++)
 		{
 			HeapTuple	tuple;
 			char *pkid;
@@ -1410,7 +1410,7 @@ repack_get_table_and_inheritors(PG_FUNCTION_ARGS)
 	if (relations_array_size == 0)
 		PG_RETURN_ARRAYTYPE_P(construct_empty_array(OIDOID));
 
-	relations_array = palloc(relations_array_size * sizeof(Datum));
+	relations_array = (Datum*)palloc(relations_array_size * sizeof(Datum));
 
 	i = 0;
 	foreach (lc, relations)

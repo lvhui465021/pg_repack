@@ -31,7 +31,7 @@ endif
 REPACK_VERSION = $(shell grep '"version":' ../META.json | head -1 \
 	| sed -e 's/[ 	]*"version":[ 	]*"\(.*\)",/\1/')
 
-PG_CPPFLAGS = -DREPACK_VERSION=$(REPACK_VERSION)
+PG_CPPFLAGS = -DREPACK_VERSION=$(REPACK_VERSION) -fPIC
 
 DATA_built = pg_repack--$(REPACK_VERSION).sql pg_repack.control
 

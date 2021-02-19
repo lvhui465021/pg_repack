@@ -17,12 +17,13 @@ PROGRAM = pg_repack
 REPACK_VERSION = $(shell grep '"version":' ../META.json | head -1 \
 	| sed -e 's/[ 	]*"version":[ 	]*"\(.*\)",/\1/')
 
-PG_CPPFLAGS = -I$(libpq_srcdir) -DREPACK_VERSION=$(REPACK_VERSION)
+PG_CPPFLAGS = -I$(libpq_srcdir) -DREPACK_VERSION=$(REPACK_VERSION) 
 
 ifdef DEBUG_REPACK
 PG_CPPFLAGS += -DDEBUG_REPACK
 endif
 
+PG_CPPFLAGS += -fPIC
 PG_LIBS = $(libpq)
 
 # libs pgport, pgcommon moved somewhere else in some ubuntu version

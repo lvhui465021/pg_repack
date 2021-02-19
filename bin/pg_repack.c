@@ -749,7 +749,7 @@ repack_one_database(const char *orderby, char *errbuf, size_t errsize)
 	appendStringInfoString(&sql, " ORDER BY t.relname, t.schemaname");
 
 	/* double check the parameters array is sane */
-	if (iparam != num_params)
+	if (iparam != (int)num_params)
 	{
 		if (errbuf)
 			snprintf(errbuf, errsize,
