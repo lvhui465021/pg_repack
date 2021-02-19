@@ -605,7 +605,7 @@ set_elevel(pgut_option *opt, const char *arg)
 static pgut_option default_options[] =
 {
 	{ 'b', 'e', "echo"			, &pgut_echo },
-	{ 'f', 'E', "elevel"		, set_elevel },
+	{ 'f', 'E', "elevel"		, (void*)set_elevel },
 	{ 's', 'd', "dbname"		, &dbname },
 	{ 's', 'h', "host"			, &host },
 	{ 's', 'p', "port"			, &port },
