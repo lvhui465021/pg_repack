@@ -627,6 +627,7 @@ repack_one_database(const char *orderby, char *errbuf, size_t errsize)
 	StringInfoData			sql;
 	SimpleStringListCell   *cell;
 	const char			  **params = NULL;
+	char*				params_temp = NULL;
 	int						iparam = 0;
 	size_t					num_parent_tables,
 							num_tables,
@@ -644,7 +645,8 @@ repack_one_database(const char *orderby, char *errbuf, size_t errsize)
 				 num_parent_tables +
 				 num_tables +
 				 num_schemas + 1;
-	params = pgut_malloc(num_params * sizeof(char *));
+	params_temp = (char*)pgut_malloc(num_params * sizeof(char *));
+	params = (const char**)&params_temp;
 
 	initStringInfo(&sql);
 
@@ -967,7 +969,7 @@ rebuild_indexes(const repack_table *table)
 #ifdef HAVE_POLL
 		struct pollfd *input_fds;
 
-		input_fds = pgut_malloc(sizeof(struct pollfd) * num_workers);
+		input_fds = (struct pollfd*)pgut_malloc(sizeof(struct pollfd) * num_workers);
 		for (i = 0; i < num_workers; i++)
 		{
 			input_fds[i].fd = PQsocket(workers.conns[i]);
@@ -1215,7 +1217,7 @@ repack_one_table(repack_table *table, const char *orderby)
 		2, indexparams);
 
 	table->n_indexes = PQntuples(indexres);
-	table->indexes = pgut_malloc(table->n_indexes * sizeof(repack_index));
+	table->indexes = (repack_index*)pgut_malloc(table->n_indexes * sizeof(repack_index));
 
 	for (j = 0; j < table->n_indexes; j++)
 	{
