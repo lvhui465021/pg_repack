@@ -27,6 +27,7 @@ PGconn	   *connection = NULL;
 PGconn     *conn2      = NULL;
 
 worker_conns workers   = {
+	.max_num_workers  = 0,
 	.num_workers     = 0,
 	.conns           = NULL
 };

@@ -57,7 +57,7 @@
 #include "pgut/pgut-spi.h"
 #include "pgut/pgut-be.h"
 
-#include "access/htup_details.h"
+#include "access/htup.h"
 
 /* builtins.h was reorganized for 9.5, so now we need this header */
 #if PG_VERSION_NUM >= 90500
