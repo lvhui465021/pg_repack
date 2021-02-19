@@ -1934,7 +1934,7 @@ repack_table_indexes(PGresult *index_details)
 	/* Keep track of which of the table's indexes we have successfully
 	 * repacked, so that we may DROP only those indexes.
 	 */
-	if (!(repacked_indexes = calloc(num, sizeof(bool))))
+	if (!(repacked_indexes = (bool*)calloc(num, sizeof(bool))))
 		ereport(ERROR, (errcode(ENOMEM),
 						errmsg("Unable to calloc repacked_indexes")));
 
