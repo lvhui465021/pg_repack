@@ -342,7 +342,7 @@ parse_time(const char *value, time_t *time)
 	char		junk[2];
 
 	/* tmp = replace( value, !isalnum, ' ' ) */
-	tmp = pgut_malloc(strlen(value) + + 1);
+	tmp = (char*)pgut_malloc(strlen(value) + + 1);
 	len = 0;
 	for (i = 0; value[i]; i++)
 		tmp[len++] = (IsAlnum(value[i]) ? value[i] : ' ');
@@ -442,12 +442,12 @@ prompt_for_password(void)
 
 #if PG_VERSION_NUM < 100000
 	if (have_passwd) {
-		buf = pgut_malloc(BUFSIZE);
+		buf = (char*)pgut_malloc(BUFSIZE);
 		memcpy(buf, passwdbuf, sizeof(char)*BUFSIZE);
 	} else {
 		buf = simple_prompt("Password: ", BUFSIZE, false);
 		have_passwd = true;
-		passwdbuf = pgut_malloc(BUFSIZE);
+		passwdbuf = (char*)pgut_malloc(BUFSIZE);
 		memcpy(passwdbuf, buf, sizeof(char)*BUFSIZE);
 	}
 #else
@@ -1342,7 +1342,7 @@ pgut_malloc(size_t size)
 {
 	char *ret;
 
-	if ((ret = malloc(size)) == NULL)
+	if ((ret = (char*)malloc(size)) == NULL)
 		ereport(FATAL,
 			(errcode_errno(),
 			 errmsg("could not allocate memory (" UINT64_FORMAT " bytes): ",
@@ -1355,7 +1355,7 @@ pgut_realloc(void *p, size_t size)
 {
 	char *ret;
 
-	if ((ret = realloc(p, size)) == NULL)
+	if ((ret = (char*)realloc(p, size)) == NULL)
 		ereport(FATAL,
 			(errcode_errno(),
 			 errmsg("could not re-allocate memory (" UINT64_FORMAT " bytes): ",
@@ -1386,7 +1386,7 @@ strdup_with_len(const char *str, size_t len)
 	if (str == NULL)
 		return NULL;
 
-	r = pgut_malloc(len + 1);
+	r = (char*)pgut_malloc(len + 1);
 	memcpy(r, str, len);
 	r[len] = '\0';
 	return r;
