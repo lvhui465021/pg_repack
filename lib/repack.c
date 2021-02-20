@@ -65,7 +65,7 @@
 #endif
 
 PG_MODULE_MAGIC;
-
+extern "C" {
 extern Datum PGUT_EXPORT repack_version(PG_FUNCTION_ARGS);
 extern Datum PGUT_EXPORT repack_trigger(PG_FUNCTION_ARGS);
 extern Datum PGUT_EXPORT repack_apply(PG_FUNCTION_ARGS);
@@ -76,7 +76,7 @@ extern Datum PGUT_EXPORT repack_drop(PG_FUNCTION_ARGS);
 extern Datum PGUT_EXPORT repack_disable_autovacuum(PG_FUNCTION_ARGS);
 extern Datum PGUT_EXPORT repack_index_swap(PG_FUNCTION_ARGS);
 extern Datum PGUT_EXPORT repack_get_table_and_inheritors(PG_FUNCTION_ARGS);
-
+}
 PG_FUNCTION_INFO_V1(repack_version);
 PG_FUNCTION_INFO_V1(repack_trigger);
 PG_FUNCTION_INFO_V1(repack_apply);
