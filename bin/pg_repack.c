@@ -479,12 +479,12 @@ preliminary_checks(char *errbuf, size_t errsize){
 	bool			ret = false;
 	PGresult		*res = NULL;
 
-	if (!is_superuser()) {
+	/*if (!is_superuser()) {
 		if (errbuf)
 			snprintf(errbuf, errsize, "You must be a superuser to use %s",
 					 PROGRAM_NAME);
 		goto cleanup;
-	}
+	}*/
 
 	/* Query the extension version. Exit if no match */
 	res = execute_elevel("select repack.version(), repack.version_sql()",
@@ -570,8 +570,8 @@ repack_all_databases(const char *orderby)
 	dbname = "postgres";
 	reconnect(ERROR);
 
-	if (!is_superuser())
-		elog(ERROR, "You must be a superuser to use %s", PROGRAM_NAME);
+	/*if (!is_superuser())
+		elog(ERROR, "You must be a superuser to use %s", PROGRAM_NAME);*/
 
 	result = execute("SELECT datname FROM pg_database WHERE datallowconn ORDER BY 1;", 0, NULL);
 	disconnect();
@@ -1523,10 +1523,10 @@ repack_one_table(repack_table *table, const char *orderby)
 	{
 		elog(DEBUG2, "---- analyze ----");
 
-		command("BEGIN ISOLATION LEVEL READ COMMITTED", 0, NULL);
+		//command("BEGIN ISOLATION LEVEL READ COMMITTED", 0, NULL);
 		printfStringInfo(&sql, "ANALYZE %s", table->target_name);
 		command(sql.data, 0, NULL);
-		command("COMMIT", 0, NULL);
+		//command("COMMIT", 0, NULL);
 	}
 
 	/* Release advisory lock on table. */

@@ -30,7 +30,7 @@ static void
 appendStringInfoVA_s(StringInfo str, const char *fmt, va_list args)
 {
 	int needed;
-	while ((needed = appendStringInfoVA(str, fmt, args)) > 0)
+	while (!appendStringInfoVA(str, fmt, args))
 	{
 		/* Double the buffer size and try again. */
 		enlargeStringInfo(str, needed);
