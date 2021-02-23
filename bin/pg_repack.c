@@ -627,7 +627,6 @@ repack_one_database(const char *orderby, char *errbuf, size_t errsize)
 	StringInfoData			sql;
 	SimpleStringListCell   *cell;
 	const char			  **params = NULL;
-	char*				params_temp = NULL;
 	int						iparam = 0;
 	size_t					num_parent_tables,
 							num_tables,
@@ -645,8 +644,7 @@ repack_one_database(const char *orderby, char *errbuf, size_t errsize)
 				 num_parent_tables +
 				 num_tables +
 				 num_schemas + 1;
-	params_temp = (char*)pgut_malloc(num_params * sizeof(char *));
-	params = (const char**)&params_temp;
+	params = (const char**)pgut_malloc(num_params * sizeof(char *));
 
 	initStringInfo(&sql);
 
