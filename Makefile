@@ -25,7 +25,7 @@ EXTVERSION = $(shell grep '"version":' META.json | head -1 \
 	| sed -e 's/[ 	]*"version":[ 	]*"\(.*\)",/\1/')
 
 # NOTE: keep consistent with META.json
-ifeq ($(shell echo $$(($(INTVERSION) < 101))),1) #openGauss版本为1.1.0,所以pg_config版本为1.1.0,大于101即可
+ifeq ($(shell echo $$(($(INTVERSION) < 100))),1) #判断pg_config版本不小于1.0.0,所以openGauss版本为1.0.1及以上,大于100即可
 $(error $(EXTENSION) requires PostgreSQL 9.4 or later. This is $(VERSION))
 endif
 
