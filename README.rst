@@ -8,9 +8,9 @@ pg_repack -- Reorganize tables in OpenGauss 1.1.0 databases with minimal locks
 
 For OpenGauss user:
 Bug Report:
-  https://github.com/lvhui465021/pg_repack
-  hui.lv@enmotech.com
-  wei.liu@enmotech.com
+-  https://github.com/lvhui465021/pg_repack
+-  hui.lv@enmotech.com
+-  wei.liu@enmotech.com
 
 |travis|
 
