@@ -89,3 +89,5 @@ From the following website, you can obtain the binarylibs we have compiled. Plea
 https://opengauss.obs.cn-south-1.myhuaweicloud.com/1.1.0/openGauss-third_party_binarylibs.tar.gz
 
 .. _there: https://opengauss.obs.cn-south-1.myhuaweicloud.com/1.1.0/openGauss-third_party_binarylibs.tar.gz
+
+For details on how to build OpenGauss 1.1.0, please refer to the OpenGauss Gitee documentation.
