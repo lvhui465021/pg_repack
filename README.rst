@@ -6,6 +6,12 @@ pg_repack -- Reorganize tables in OpenGauss 1.1.0 databases with minimal locks
 - Development: https://github.com/reorg/pg_repack
 - Bug Report: https://github.com/reorg/pg_repack/issues
 
+For OpenGauss user:
+Bug Report:
+  https://github.com/lvhui465021/pg_repack
+  hui.lv@enmotech.com
+  wei.liu@enmotech.com
+
 |travis|
 
 .. |travis| image:: https://travis-ci.org/reorg/pg_repack.svg?branch=master
@@ -59,3 +65,17 @@ Methods of compiling
 3. make install.
 
 generate the pg_repack executable program in pg_repack/bin/pg_repack and dynamic library pg_repack.so in pg_repack/lib/pg_repack.so.
+
+when compile the OpenGauss 1.1.0, set the environment variables:
+CODE_BASE=path/openGauss-server                                      assign the OpenGauss 1.1.0 code directory to CODE_BASE
+BINARYLIBS=path/openGauss-third_party_binarylibs                     assign the OpenGauss 1.1.0 third binarylibs to BINARYLIBS
+GAUSSHOME=path/opengauss_install_path                                assign the OpenGauss 1.1.0 install directory to GAUSSHOME
+CC=$BINARYLIBS/buildtools/centos7.6_x86_64/gcc7.3/gcc/bin/gcc        assign the gcc version, because the OpenGauss 1.1.0 need gcc7.3
+CXX=$BINARYLIBS/buildtools/centos7.6_x86_64/gcc7.3/gcc/bin/g++       assign the g++ version, because the OpenGauss 1.1.0 need g++7.3
+LD_LIBRARY_PATH=$GAUSSHOME/lib:$GCC_PATH/gcc/lib64:$GCC_PATH/mpc/lib:$GCC_PATH/mpfr/lib:$GCC_PATH/gmp/lib:$BINARYLIBS/dependency/centos7.6_x86_64/openssl/comm/lib:$BINARAYLIBS/dependency/centos7.6_x86_64/libobs/comm/lib:$BINARYLIBS/dependency/centos7.6_x86_64/grpc/comm/lib:$LD_LIBRARY_PATH
+                                                                     assign the dynamic library path when compile OpenGauss 1.1.0
+PATH=$GCC_PATH/gcc/bin:$PATH                                         assign the gcc executable program directory
+
+Download the openGauss-third_party_binarylibs from there_.
+From the following website, you can obtain the binarylibs we have compiled. Please unzip it and rename to binarylibs after you download.
+.. _there: https://opengauss.obs.cn-south-1.myhuaweicloud.com/1.1.0/openGauss-third_party_binarylibs.tar.gz
