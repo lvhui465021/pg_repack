@@ -1,4 +1,4 @@
-pg_repack -- Reorganize tables in PostgreSQL databases with minimal locks
+pg_repack -- Reorganize tables in OpenGauss 1.1.0 databases with minimal locks
 =========================================================================
 
 - Homepage: https://reorg.github.com/pg_repack
@@ -12,7 +12,7 @@ pg_repack -- Reorganize tables in PostgreSQL databases with minimal locks
     :target: https://travis-ci.org/reorg/pg_repack
     :alt: Linux and OSX build status
 
-pg_repack_ is a PostgreSQL extension which lets you remove bloat from
+pg_repack_ is a OpenGauss 1.1.0 extension which lets you remove bloat from
 tables and indexes, and optionally restore the physical order of clustered
 indexes. Unlike CLUSTER_ and `VACUUM FULL`_ it works online, without
 holding an exclusive lock on the processed tables during processing.
@@ -49,3 +49,12 @@ upgrading from previous versions.
 
 .. __: pg_repack_
 .. _pg_reorg: https://github.com/reorg/pg_reorg
+
+
+Methods of compiling
+---------------------
+
+1. add the environment variables the PATH of the OpenGauss 1.1.0 executable program directory into $PATH.
+2. make.
+3. make install.
+generate the pg_repack executable program in pg_repack/bin/pg_repack and dynamic library pg_repack.so in pg_repack/lib/pg_repack.so.
