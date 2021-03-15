@@ -57,4 +57,5 @@ Methods of compiling
 1. add the environment variables the PATH of the OpenGauss 1.1.0 executable program directory into $PATH.
 2. make.
 3. make install.
+
 generate the pg_repack executable program in pg_repack/bin/pg_repack and dynamic library pg_repack.so in pg_repack/lib/pg_repack.so.
